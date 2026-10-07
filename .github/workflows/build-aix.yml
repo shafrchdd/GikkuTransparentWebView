@@ -10,17 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build extension
-        uses: mit-cml/appinventor-sources-action@master
+
+      - name: Build AIX
+        id: build
+        uses: pavi2410/AIX-Action@main
         with:
-          command: extensions
-      - name: Locate AIX
-        run: |
-          find . -type f -name "*.aix" -print
-          mkdir -p dist
-          find . -type f -name "*.aix" -exec cp {} dist/ \;
+          source-dir: src
+          package-name: com.gikku.transparentwebview
+          appinventor-repo: mit-cml/appinventor-sources
+          appinventor-branch: master
+
       - name: Upload AIX
         uses: actions/upload-artifact@v4
         with:
           name: GikkuTransparentWebView-aix
-          path: dist/*.aix
+          path: ${{ steps.build.outputs.extension-path }}
