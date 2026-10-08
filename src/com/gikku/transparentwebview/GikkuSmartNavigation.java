@@ -14,6 +14,9 @@ import java.util.function.Consumer;
 import com.google.appinventor.components.annotations.*;
 import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.runtime.*;
+@DesignerComponent(version=1, description="Gikku Smart Navigation: GPS, routes, stops and nearby alerts.", category=ComponentCategory.EXTENSION, nonVisible=true, iconName="")
+@SimpleObject(external=true)
+@UsesPermissions(permissionNames="android.permission.ACCESS_FINE_LOCATION,android.permission.ACCESS_COARSE_LOCATION,android.permission.INTERNET")
 public class GikkuSmartNavigation extends AndroidNonvisibleComponent implements LocationListener {
  private final Activity activity; private LocationManager lm;
  private String apiKey="",destination=""; private ArrayList<String> stops=new ArrayList<>();
